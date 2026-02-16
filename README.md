@@ -124,6 +124,9 @@ cat machines.txt | for-each ssh '$1' pkill -f naughty-process
 cat urls.txt | for-each wget
 cat urls.txt | for-each wget -q '$1'
 
+# Make an HTML clickable list of links from a list of URLs
+cat urls.txt | for-each echo '<br><a href="$1">$1</a>'  > index.html
+
 # Resize all videos in a directory
 ls *.mp4 | for-each ffmpeg -i '$1' -vf scale=1280:720 r
 ```
