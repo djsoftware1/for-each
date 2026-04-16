@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
-# https://github.com/djsoftware1/foreach
-#
+# https://github.com/djsoftware1/for-each
+# Copyright David Joffe / DJ Software. MIT License
 # Created 2 Jan 2026 by David Joffe
 
 set -eu
@@ -11,7 +11,7 @@ set -eu
 BUILD_DIR=${BUILD_DIR:-build}
 BUILD_TYPE=${BUILD_TYPE:-Release}
 
-echo "==> Building foreach"
+echo "== Building for-each"
 echo "    build dir : $BUILD_DIR"
 echo "    build type: $BUILD_TYPE"
 
