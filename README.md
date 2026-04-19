@@ -2,7 +2,7 @@
 
 **`for-each`** is a small, cross-platform Unix-style utility that executes a command once for each line of input, with positional variable expansion and no shell evaluation.
 
----
+[![for-each and other examples](https://github.com/djsoftware1/.github/raw/main/media/dj-software-open-utils-for-each-examples.png)](https://github.com/djsoftware1/for-each/)
 
 ## Quick examples (TL;DR)
 
