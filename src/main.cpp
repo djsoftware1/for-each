@@ -170,6 +170,7 @@ static std::wstring quote_arg_windows(const std::wstring& arg) {
 
 int main(int argc, char* argv[]) {
     bool space_delim = false;
+    bool include_empty = false;
     std::optional<char> delim;
 
     std::vector<std::string> cmd_template;
@@ -204,12 +205,10 @@ int main(int argc, char* argv[]) {
                 delim = argv[++i][0];
                 continue;
             }
-            /*
-            if (a == "--include-empty") {
+            if (a == "-e" || a == "--include-empty") {
                 include_empty = true;
                 continue;
             }
-            */
             // other flags...
         }
     
@@ -246,26 +245,26 @@ int main(int argc, char* argv[]) {
 
         std::string raw_line = line;
 
-        // Trim ONLY to decide emptiness
         std::string trimmed = trim(line);
-        if (trimmed.empty())
+
+        if (!include_empty && trimmed.empty())
             continue;
-        
-        // Use trimmed for splitting logic
-        std::string processed = trimmed;
-        
+
         std::vector<std::string> fields;
-    
-        if (space_delim) {
-            fields = split_whitespace(processed);
+
+        if (trimmed.empty()) {
+            // Include empty or whitespace-only lines as one invocation with an empty field.
+            fields = { "" };
+        } else if (space_delim) {
+            fields = split_whitespace(trimmed);
         } else if (delim) {
-            fields = split_delim(processed, *delim);
+            fields = split_delim(trimmed, *delim);
         } else {
             // default: TAB-based
-            if (processed.find('\t') != std::string::npos)
-                fields = split_delim(processed, '\t');
+            if (trimmed.find('\t') != std::string::npos)
+                fields = split_delim(trimmed, '\t');
             else
-                fields = { processed };
+                fields = { trimmed };
         }
 
         // shouldn't happen but just in case ..

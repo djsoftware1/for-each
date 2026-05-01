@@ -46,6 +46,10 @@ echo '----------------'
 cat ../src/main.cpp | for-each echo line '$#' '$*'
 cat ../src/main.cpp | for-each --include-empty echo line '$#' '$*'
 
+printf "a\n\nb\n" | for-each echo 'line[$*]'
+printf "a\n\nb\n" | for-each -e echo 'line[$*]'
+printf "a\n   \nb\n" | for-each -e echo 'space[$1]'
+
 # This file
 echo '----------------'
 cat tests.sh | for-each echo Line '$#': '$*'

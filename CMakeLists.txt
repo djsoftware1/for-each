@@ -5,7 +5,7 @@
 cmake_minimum_required(VERSION 3.16)
 
 project(foreach
-    VERSION 1.0.0
+    VERSION 1.0.1
     DESCRIPTION "A portable Unix-style utility to run a command for each line of input from stdin, supporting argument substitution, and optionally tab-separated values. MIT license."	
     LANGUAGES CXX
 )

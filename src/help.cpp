@@ -15,7 +15,7 @@
 #include <iostream>
 #include "help.h"
 
-static const char* FOREACH_VERSION = "1.0.0";
+static const char* FOREACH_VERSION = "1.0.1";
 
 void print_version() {
     std::cout << "for-each " << FOREACH_VERSION << "\n";
@@ -41,7 +41,7 @@ Options:
   --delim CHAR
         Split input fields on the specified character.
 
-  --include-empty
+  -e, --include-empty
         Process empty or whitespace-only input lines.
         By default, such lines are skipped.
 

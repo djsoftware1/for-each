@@ -42,6 +42,9 @@ for-each --help
 # Show version number and exit
 for-each --version
 
+# Include empty or whitespace-only lines
+printf "a\n\nb\n" | for-each -e echo '[$*]'
+
 # Do a command for all folders in current directory
 ls -d */ | for-each echo
 
@@ -141,6 +144,7 @@ ls *.mp4 | for-each ffmpeg -i '$1' -vf scale=1280:720 r
   - `$#` — line number (1-based)
 - one input line → one argument
 - Optional tab-separated fields detected automatically
+- `-e` / `--include-empty` to process empty or whitespace-only lines
 - Works on **Linux, macOS, and Windows**
 - No runtime dependencies
 
